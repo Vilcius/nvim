@@ -61,6 +61,8 @@ wk.register({
     -- Move between buffers
     ["<S-Left>"] = { "<cmd>bprevious<CR>", "Move to previous buffer" },
     ["<S-Right>"] = { "<cmd>bnext<CR>", "Move to next buffer" },
+    ["<PageUp>"] = { "<cmd>bprevious<CR>", "Move to previous buffer" },
+    ["<PageDown>"] = { "<cmd>bnext<CR>", "Move to next buffer" },
   },
   {
     mode = "n",
