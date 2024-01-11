@@ -9,7 +9,8 @@ return {
           settings = {
             pylsp = {
               plugins = {
-                jedi = { environment = vim.fn.exepath('python3') }
+                jedi = { environment = vim.fn.exepath('python3') },
+                pycodestyle = { ignore = { 'E226', 'E265', 'E501', 'W391' } }
               },
             },
           },
