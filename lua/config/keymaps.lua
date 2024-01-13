@@ -85,7 +85,6 @@ wk.register({
     mode = "n",
   })
 
-
 wk.register({
     ["<leader>y"] = { [["+y]], "Copy visual text to clipboard" },
     ["<leader>dd"] = { [["_d]], "Delete visual text to trash" },
@@ -103,7 +102,6 @@ wk.register({
   {
     mode = "n",
   })
-
 
 wk.register({
     ["Q"] = { "<nop>", "Do nothing" },
