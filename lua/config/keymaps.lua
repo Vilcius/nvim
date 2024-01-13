@@ -14,6 +14,14 @@ wk.register({ -- Moving visually selected lines around
     mode = "v",
   })
 
+wk.register({ -- Moving lines around
+    ["<S-Left>"] = { "<<", "Shift current line left" },
+    ["<S-Right>"] = { ">>", "Shift current line right" },
+  },
+  {
+    mode = "n",
+  })
+
 wk.register({ -- Jump to next/previous search and center
     ["n"] = { "nzzzv", "Jump to next search" },
     ["N"] = { "Nzzzv", "Jump to next search" },
@@ -52,15 +60,13 @@ wk.register({
     -- Change 2 split windows from vert to horiz or horiz to vert
     ["<leader>th"] = { "<C-w>t<C-w>H", "Split to vertical" },
     ["<leader>tv"] = { "<C-w>t<C-w>K", "Split to horizontal" },
-    -- Move between splits
-    ["<C-Left>"] = { "<C-w>h", "Move to left split" },
-    ["<C-Down>"] = { "<C-w>j", "Move to bottom split" },
-    ["<C-Up>"] = { "<C-w>k", "Move to above split" },
-    ["<C-Right>"] = { "<C-w>l", "Move to right split" },
+    -- Move between splits (uncomment if not using tmux plugin)
+    -- ["<C-Left>"] = { "<C-w>h", "Move to left split" },
+    -- ["<C-Down>"] = { "<C-w>j", "Move to bottom split" },
+    -- ["<C-Up>"] = { "<C-w>k", "Move to above split" },
+    -- ["<C-Right>"] = { "<C-w>l", "Move to right split" },
     ["<C-Tab>"] = { "<C-w>w", "Cycle splits" },
     -- Move between buffers
-    ["<S-Left>"] = { "<cmd>bprevious<CR>", "Move to previous buffer" },
-    ["<S-Right>"] = { "<cmd>bnext<CR>", "Move to next buffer" },
     ["<PageUp>"] = { "<cmd>bprevious<CR>", "Move to previous buffer" },
     ["<PageDown>"] = { "<cmd>bnext<CR>", "Move to next buffer" },
   },
