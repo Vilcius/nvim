@@ -1,0 +1,126 @@
+# Snippets for Python files
+# snippet imp "import" bA
+# import ${1:module}${2: as ${3:alias}}
+# endsnippet
+
+# snippet from "from import" bA
+# from ${1:module} import ${2:methods}${3: as ${4:alias}}
+# endsnippet
+
+snippet rdef "Method Definition" bA
+def ${1:name_of_method}($2):
+	r"""
+	${3:Documention of method}
+
+	${4:Args:}
+		${2/(\w+)(,*)/$1 (data type): TODO\\n(?2:   )/g}
+	${5:Returns:
+		${6:return value}}
+	"""$0
+endsnippet
+
+snippet mk "inline math" iA
+:math:\`${1:math}\`$0
+endsnippet
+
+snippet dm "display math" bA
+.. math::
+
+${1:math}
+endsnippet
+
+snippet p-- "print(---)" bA
+print('------------------------------------------------------------')
+endsnippet
+
+snippet p## "print(###)" bA
+print('############################################################')
+endsnippet
+
+snippet prf "Print Format" bA
+print('$1'.format($2))
+endsnippet
+
+# snippet if "If" bA
+# if ${1:condition}:
+#     ${2:[value if True]}$0
+# endsnippet
+
+# snippet elif "Else If" bA
+# elif ${1:condition}:
+#     ${2:[value if True]}$0
+# endsnippet
+
+# snippet for "For Loop" bA
+# for ${1:i} in ${2:range(${3:n})}:
+#     ${4:[for loop-and]}
+# endsnippet
+
+# snippet plot "Matplotlib Plot" bA
+# plt.plot(${1:data to plot}, ${2:"b"}, label="${3:Plot Title}")
+# plt.ylabel("${4:Y-label}")
+# plt.xlabel("${5:X-label}")
+# plt.legend()
+# plt.show()
+# endsnippet
+#
+snippet cell "cell" bA
+# %% ${1:cell name} ---------------------------------------------------------------------
+$0
+endsnippet
+
+snippet mcel "markdown cell" bA
+# %% [markdown] ${1:cell name} ---------------------------------------------------------------------
+$0
+endsnippet
+
+# ## Pennylane snippets
+# snippet pHad "Hadamard" iA
+# qml.Hadamard(wires=${1:0})$0
+# endsnippet
+
+# snippet pX "X" iA
+# qml.PauliX(wires=${1:0})$0
+# endsnippet
+
+# snippet pY "Y" iA
+# qml.PauliY(wires=${1:0})$0
+# endsnippet
+
+# snippet pZ "Z" iA
+# qml.PauliZ(wires=${1:0})$0
+# endsnippet
+
+# snippet pcX "Controlled-X" iA
+# qml.CNOT(wires=[${1:control}, ${2:target}])$0
+# endsnippet
+
+# snippet pcY "Controlled-Y" iA
+# qml.CY(wires=[${1:control}, ${2:target}])$0
+# endsnippet
+
+# snippet pcZ "Controlled-Z" iA
+# qml.CZ(wires=[${1:control}, ${2:target}])$0
+# endsnippet
+
+# snippet prX "X-Rotation" iA
+# qml.RX(${1:angle}, wires=${2:0})$0
+# endsnippet
+
+# snippet prY "Y-Rotation" iA
+# qml.RY(${1:angle}, wires=${2:0})$0
+# endsnippet
+
+# snippet prZ "Z-Rotation" iA
+# qml.RZ(${1:angle}, wires=${2:0})$0
+# endsnippet
+
+# snippet dev "Device" bA
+# ${1:dev} = qml.device('${2:default.qubit}', wires=${3:1})$0
+# endsnippet
+
+# snippet pexp "Expected Value" iA
+# qml.expval(${1:qml.PauliZ(wires=0)})$0
+# endsnippet
+
+

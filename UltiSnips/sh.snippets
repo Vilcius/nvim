@@ -1,0 +1,27 @@
+# Snippets for Unix shell (sh) filetype
+snippet al "alias" bA
+alias $1="$2"$0
+endsnippet
+
+snippet if "if ... then (if)" bA
+if [[ ${1:condition} ]]; then
+	${0:#statements}
+fi
+endsnippet
+
+snippet elif "elif" bA
+elif [[ ${1:condition} ]]; then
+	${0:#statements}
+endsnippet
+
+snippet else "else" bA
+else
+	$0
+endsnippet
+
+snippet for "for loop" bA
+for (( ${1:i}=${2:1} ; $1<=${3:max} ; $1++ ));
+do
+	$4
+done
+endsnippet
