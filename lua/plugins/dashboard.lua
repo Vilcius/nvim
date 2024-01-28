@@ -1,3 +1,39 @@
+local Input = require('nui.input')
+local event = require('nui.utils.autocmd').event
+
+_G.dashNewFile = function()
+  local input = Input({
+    position = '50%',
+    size = {
+      width = 40,
+    },
+    border = {
+      style = 'rounded',
+      text = {
+        top = ' Create a new file ',
+        top_align = 'center',
+      },
+      padding = { 0, 1 },
+    },
+    relative = 'editor',
+    win_options = {
+      winhighlight = 'Normal:String,FloatBorder:VertSplit',
+    },
+  }, {
+    prompt = '',
+    default_value = '',
+    on_close = function()
+      require('notify').notify('New file was not created!', 'error')
+    end,
+    on_submit = function(value)
+      vim.fn.execute('lua require("lazyvim.util").new_file("' .. value .. '")')
+      vim.fn.execute('w ' .. value)
+    end,
+  })
+  input:on(event.BufLeave, function() input:unmount() end)
+  input:mount()
+end
+
 return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
@@ -12,12 +48,12 @@ return {
     -- ]]
 
     local logo = [[
-    ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗
-    ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║
-    ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║
-    ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║
-    ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║
-    ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝
+       ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗
+       ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║
+       ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║
+       ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║
+       ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║
+       ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝
     ]]
 
     logo = string.rep("\n", 8) .. logo .. "\n\n"
@@ -34,7 +70,8 @@ return {
         -- stylua: ignore
         center = {
           { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
-          { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
+          -- { action = "ene | vim.ui.input(function(fn) <cmd>w fn, end)", desc = " New file", icon = " ", key = "n" },
+          { action = "enew", desc = " New file", icon = " ", key = "n" },
           { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
           { action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
           {
