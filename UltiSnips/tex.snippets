@@ -66,6 +66,105 @@ snippet template "Basic template" b
 %##########################################################################
 endsnippet
 
+snippet beamer "beamer" bA
+%##########################################################################
+\documentclass{beamer}
+
+%--------------------------------------------------------------------------
+%Preamble
+%Either change the file path below to where you save
+%Preamble.tex or copy and paste contents of Preamble.tex
+%here and comment out line below
+\IfFileExists{./Preamble.tex}{%
+  \input{Preamble.tex}
+}{%
+  \input{/home/vilcius/Programming/LaTeX/Preamble.tex}
+}
+
+% \usepackage{amsrefs}
+% \usepackage{setspace}
+% \onehalfspacing
+
+% \usetikzlibrary{quantikz2}
+\usepackage{quantikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{overlay-beamer-styles}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algrenewcommand\alglinenumber[1]{\tiny #1:}
+
+% \usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
+% \addbibresource{Masters_Thesis.bib}
+
+% \tikzcdset{ampersand replacement=\&}
+% \tikzset{
+%    invisible/.style={opacity=.25},
+%    visible on/.style={alt={#1{}{invisible}}},
+%    alt/.code args={<#1>#2#3}{%
+%      \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}%
+%  }
+% }
+
+% \setlength{\columnsep}{0pt}
+% \setlength{\tabcolsep}{5pt}
+% \renewcommand{\arraystretch}{2}
+% \setlength{\parindent}{0pt}
+% \renewcommand{\labelenumi}{(\alph{enumi})}
+\newcommand{\labelitemi}{\setbeamercolor{math text}{fg = rpPink}$\blacktriangleright$}
+\newcommand{\labelitemii}{\setbeamercolor{math text}{fg = rpLightBlue}$\blacktriangleright$}
+
+%--------------------------------------------------------------------------
+%Header
+\usetheme{Warsaw}
+\setbeamercolor{structure}{fg=rpBlue}
+\setbeamercolor{math text}{fg=rpLightBlue}
+\setbeamercolor{section in head/foot}{fg=rpPink,bg=rpDarkPurple}
+\setbeamercolor{page number in head/foot}{fg=rpYellow}
+\setbeamercolor{title in head/foot}{fg=black}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{block title}{fg=black}
+% \setbeamercolor{itemize subitem}{bg=color3}
+\setbeamercolor{normal text}{fg=rpWhite, bg = rpLightPurple}
+% \setbeamercolor{normal text}{fg = background, bg=color7}
+\newcommand*\oldmacro{}%
+\let\oldmacro\insertshorttitle%
+\renewcommand*\insertshorttitle{%
+  \oldmacro\hfill%
+\insertframenumber\,/\,\inserttotalframenumber}
+\setbeamercovered{transparent}
+
+\newcommand{\myname}{\textit{Anthony Wilkie}}
+\newcommand{\course}{}
+\newcommand{\topic}{${1: topic}}
+
+%-------------------------------------------------------------------------------
+% Local Commands
+\renewcommand{\textit}[1]{\tc{rpYellow}{\emph{#1}}}
+
+%--------------------------------------------------------------------------
+%Title
+\title[${2: short title}]{\topic}
+\author[Anthony Wilkie]{\myname}
+\institute{University of Tennessee}
+\date{${3: today}}
+
+%##########################################################################
+%Document
+\begin{document}
+
+%-------------------------------------------------------------------------------
+% Frame Title
+\begin{frame}
+  \maketitle
+\end{frame}
+
+$0
+
+\end{document}
+endsnippet
+
+
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
 	$2
