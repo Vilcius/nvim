@@ -4,6 +4,15 @@
 
 local wk = require("which-key")
 
+wk.register({ -- Keep cursor center in screen when scrolling
+    ["Down"] = { "jzz", "Move down and center" },
+    ["Up"] = { "kzz", "Move up and center" },
+  },
+  {
+    mode = "n",
+  })
+
+
 wk.register({ -- Moving visually selected lines around
     ["<S-Down>"] = { ":m '>+1<CR>gv=gv", "Shift selected lines down" },
     ["<S-Up>"] = { ":m '<-2<CR>gv=gv", "Shift selected lines up" },
