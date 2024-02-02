@@ -742,17 +742,14 @@ snippet '(\\?[A-Za-z]*{?[A-Za-z]*}?),,' "A list" riA
 `!p snip.rv = match.group(1)`_{${1:0}}, ${2:`!p snip.rv = match.group(1)`_{${3:1}}, }\ldots, `!p snip.rv = match.group(1)`_{${4:n}}
 endsnippet
 
-snippet plot "Plot" w
+snippet plot "Plot" bA
 \begin{figure}[$1]
 	\centering
 	\begin{tikzpicture}
-		\begin{axis}[
-			xmin= ${2:-10}, xmax= ${3:10},
-			ymin= ${4:-10}, ymax = ${5:10},
-			axis lines = middle,
-		]
-			\addplot[domain=$2:$3, samples=${6:100}]{$7};
-		\end{axis}
+    \draw[->] (0,0) -- (5,0) node[right] {$w$};
+    \draw[->] (0,0) -- (0,3) node[above] {$U(w)$};
+    \node[below right] at (2,0) {$G$};
+    \draw[domain=1.5:2] plot (\x, \x^2) node[below left] {$r = 4$};
 	\end{tikzpicture}
 	\caption{$8}
 	\label{${9:$8}}
@@ -971,6 +968,13 @@ snippet "(?<!\\|[a-zA-Z])([a-zA-Z])vec" "Vec" riA
 \vec{`!p snip.rv=match.group(1)`}
 endsnippet 
 
+priority 100
+context "math()"
+snippet vv "Vec" iA
+\vec{${$1}$0
+endsnippet
+
+
 # priority 200
 # context "math()"
 # snippet '(\\(([lL]ambd|[oO]meg|alph|([sS]ig|[gG]am)m|kapp|(io|[bdtzBDT]?(h)?e(l)?)t)a|(var)?([cpP][hs]?|[xX])i|rho|[mnt](a)?u|[euU]psilon))vec' "greek vec" riA
@@ -1000,6 +1004,19 @@ context "math()"
 snippet "(?<!\\|[a-zA-Z])md([a-zA-Z])" "Math Bold Face" riA
 \mathbf{`!p snip.rv=match.group(1)`}
 endsnippet
+
+priority 100
+context "math()"
+snippet bf "Math Bold Face" iA
+\mathbf{$1}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet \srm "Math Text" riA
+\mathrm{$1}$0
+endsnippet
+
 
 priority 100
 context "math()"
