@@ -5,11 +5,11 @@
 local wk = require("which-key")
 
 wk.register({ -- Keep cursor center in screen when scrolling
-    ["Down"] = { "jzz", "Move down and center" },
-    ["Up"] = { "kzz", "Move up and center" },
+    ["<Down>"] = { "jzz", "Move down and center" },
+    ["<Up>"] = { "kzz", "Move up and center" },
   },
   {
-    mode = "n",
+    mode = "n", "i",
   })
 
 

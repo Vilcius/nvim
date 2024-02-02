@@ -3,3 +3,4 @@
 -- Add any additional options here
 vim.opt.wrap = true
 vim.opt.spell = true
+vim.opt.conceallevel = 2
