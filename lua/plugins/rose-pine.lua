@@ -46,7 +46,7 @@ return {
       --
     })
 
-    vim.cmd('colorscheme tokyonight-night')
+    vim.cmd('colorscheme cyberspace')
     vim.api.nvim_set_hl(0, "jukit_cellmarker_colors", { fg = "#414868", bg = "#414868" })
     vim.api.nvim_set_hl(0, "jukit_textcell_bg_colors", { bg = "#1e2030", fg = "#c4a7e7" })
   end

@@ -16,7 +16,7 @@ endglobal
 
 # greek_snip = '\\(alpha|beta|chi|[dD]elta|epsilona|[pP]hi|varphi|[gG]amma|eta|iota|kappa|[lL]ambda|mu|nu|[pP]i|[tT]heta|rho|[sS]igma|tau|[uU]psilon|[oO]mega|[xX]i|[pP]si|zeta)'
 
-snippet template "Basic template" b
+snippet template "Basic template" bA
 %##########################################################################
 \documentclass[12pt]{article}
 
@@ -25,10 +25,14 @@ snippet template "Basic template" b
 %Either change the file path below to where you save
 %Preamble.tex or copy and paste contents of Preamble.tex
 %here and comment out line below
-\input{/home/vilcius/Desktop/Programming/LaTeX/Preamble.tex}
-\usepackage{amsrefs}
+\IfFileExists{./Preamble.tex}{%
+\input{Preamble.tex}
+}{%
+\input{/home/vilcius/Programming/LaTeX/Preamble.tex}
+}
 \usepackage{setspace}
 %\onehalfspacing
+\usepackage[margin=.5in]{geometry}
 
 \setlength{\columnsep}{0pt}
 \setlength{\tabcolsep}{5pt}
@@ -274,14 +278,12 @@ snippet frame "Frame" bA
 \begin{frame}{$1}
 	$0
 \end{frame}
-
 endsnippet
 
 snippet block "Block" bA
 \begin{block}{$1}
 	$0
 \end{block}
-
 endsnippet
 
 snippet '(s*defn)' "Definition" rbA
@@ -290,7 +292,6 @@ snippet '(s*defn)' "Definition" rbA
 \begin{`!p snip.rv = match.group(1)`}\label{defn: $1}
 	$2
 \end{`!p snip.rv = match.group(1)`}
-$0
 endsnippet
 
 snippet *defn "Definition" bA
@@ -299,7 +300,6 @@ snippet *defn "Definition" bA
 \begin{defn*}
 	$1
 \end{defn*}
-$0
 endsnippet
 
 snippet '(s*thm)' "Theorem" rbA
@@ -308,7 +308,6 @@ snippet '(s*thm)' "Theorem" rbA
 \begin{`!p snip.rv = match.group(1)`}\label{thm: $1}
 	$2
 \end{`!p snip.rv = match.group(1)`}
-$0
 endsnippet
 
 snippet *thm "Theoem" bA
@@ -317,7 +316,6 @@ snippet *thm "Theoem" bA
 \begin{thm*}
 	$1
 \end{thm*}
-$0
 endsnippet
 
 snippet '(s*prop)' "Proposition" rbA
@@ -326,7 +324,6 @@ snippet '(s*prop)' "Proposition" rbA
 \begin{`!p snip.rv = match.group(1)`}\label{prop: $1}
 	$2
 \end{`!p snip.rv = match.group(1)`}
-$0
 endsnippet
 
 snippet *prop "Proposition" bA
@@ -335,7 +332,6 @@ snippet *prop "Proposition" bA
 \begin{prop*}
 	$1
 \end{prop*}
-$0
 endsnippet
 
 snippet '(s*cor)' "Corollary" rbA
@@ -344,7 +340,6 @@ snippet '(s*cor)' "Corollary" rbA
 \begin{`!p snip.rv = match.group(1)`}\label{cor: $1}
 	$2
 \end{`!p snip.rv = match.group(1)`}
-$0
 endsnippet
 
 snippet *cor "Corollary" bA
@@ -353,7 +348,6 @@ snippet *cor "Corollary" bA
 \begin{cor*}
 	$1
 \end{cor*}
-$0
 endsnippet
 
 snippet '(s*lem)' "Lemma" rbA
@@ -362,7 +356,6 @@ snippet '(s*lem)' "Lemma" rbA
 \begin{`!p snip.rv = match.group(1)`}\label{lem: $1}
 	$2
 \end{`!p snip.rv = match.group(1)`}
-$0
 endsnippet
 
 snippet *lem "Lemma" bA
@@ -371,7 +364,6 @@ snippet *lem "Lemma" bA
 \begin{lem*}
 	$1
 \end{lem*}
-$0
 endsnippet
 
 snippet '(s*exmp)' "Example" rbA
@@ -380,7 +372,6 @@ snippet '(s*exmp)' "Example" rbA
 \begin{`!p snip.rv = match.group(1)`}\label{exmp: $1}
 	$2
 \end{`!p snip.rv = match.group(1)`}
-$0
 endsnippet
 
 snippet *exmp "Example" bA
@@ -389,7 +380,6 @@ snippet *exmp "Example" bA
 \begin{exmp*}
 	$1
 \end{exmp*}
-$0
 endsnippet
 
 snippet '(s*exer)' "Exercise" rbA
@@ -398,7 +388,6 @@ snippet '(s*exer)' "Exercise" rbA
 \begin{`!p snip.rv = match.group(1)`}\label{exer: $1}
 	$2
 \end{`!p snip.rv = match.group(1)`}
-$0
 endsnippet
 
 snippet *exer "Exercise" bA
@@ -407,7 +396,6 @@ snippet *exer "Exercise" bA
 \begin{exer*}
 	$1
 \end{exer*}
-$0
 endsnippet
 
 snippet 'named(def|thm)' "Named" rbA
@@ -416,7 +404,6 @@ snippet 'named(def|thm)' "Named" rbA
 \begin{`!p snip.rv = match.group(0)`}[$1]
 	$2
 \end{`!p snip.rv = match.group(0)`}
-$0
 endsnippet
 
 snippet '(s*const)' "Construction" rbA
@@ -425,7 +412,6 @@ snippet '(s*const)' "Construction" rbA
 \begin{`!p snip.rv = match.group(1)`}\label{const: $1}
 	$2
 \end{`!p snip.rv = match.group(1)`}
-$0
 endsnippet
 
 snippet *const "Construction" bA
@@ -434,7 +420,6 @@ snippet *const "Construction" bA
 \begin{const*}
 	$1
 \end{const*}
-$0
 endsnippet
 
 snippet %-- "%--" bA
@@ -485,7 +470,6 @@ snippet dm "Math" wA
 \[
 	$1
 \]
-$0
 endsnippet
 
 snippet ali "Align" bA
@@ -678,11 +662,11 @@ snippet prod "product" wA
 \prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
-context "math()"
-snippet part "d/dx" wA
-\frac{\partial ${1:V}}{\partial ${2:x}} $0
-endsnippet
-
+#context "math()"
+#snippet part "d/dx" wA
+#\frac{\partial ${1:V}}{\partial ${2:x}} $0
+#endsnippet
+#
 context "math()"
 snippet sq "\sqrt{}" wA
 \sqrt{${1:${VISUAL}}}$0
@@ -734,7 +718,7 @@ endsnippet
 
 context "math()"
 snippet '_([A-Za-z])([A-Za-z])' "_ij" riA
-_{`!p snip.rv = match.group(1)`${1:,}`!p snip.rv = match.group(2)`}
+_{`!p snip.rv = match.group(1)`,`!p snip.rv = match.group(2)`}$0
 endsnippet
 
 context "math()"
@@ -940,7 +924,7 @@ endsnippet
 
 # priority 200
 # context "math()"
-# snippet  '\\(alpha|beta|chi|[dD]elta|epsilona|[pP]hi|varphi|[gG]amma|eta|iota|kappa)bar' "greek bar" riA
+# snippet  '\\(alpha|beta|chi|[dD]elta|epsilon|[pP]hi|varphi|[gG]amma|eta|iota|kappa)bar' "greek bar" riA
 # \overline{`!p snip.rv=match.group(1)`}
 # endsnippet
 
@@ -970,8 +954,8 @@ endsnippet
 
 priority 100
 context "math()"
-snippet vv "Vec" iA
-\vec{${$1}$0
+snippet '(\$|\s)vv' "Vec" riA
+`!p snip.rv=match.group(1)`\vec{$1}$0
 endsnippet
 
 
@@ -989,7 +973,7 @@ endsnippet
 
 priority 100
 context "math()"
-snippet "(?<!\\|[a-zA-Z])mf([A-Z])" "Math Fraktur" riA
+snippet "(?<!\\|[a-zA-Z])mf([a-zA-Z])" "Math Fraktur" riA
 \mathfrak{`!p snip.rv=match.group(1)`}
 endsnippet
 
@@ -1007,16 +991,15 @@ endsnippet
 
 priority 100
 context "math()"
-snippet bf "Math Bold Face" iA
-\mathbf{$1}$0
+snippet '(\$|\s)bf' "Math Bold Face" riA
+`!p snip.rv=match.group(1)`\mathbf{$1}$0
 endsnippet
 
 priority 100
 context "math()"
-snippet \srm "Math Text" riA
-\mathrm{$1}$0
+snippet '(\$|\s)rm' "Math Text" riA
+`!p snip.rv=match.group(1)`\mathrm{$1}$0
 endsnippet
-
 
 priority 100
 context "math()"
@@ -1099,10 +1082,6 @@ snippet udl "Text Underline" A
 \underline{$1}$0
 endsnippet
 
-snippet Los "Los" iA
-\L{}o\'{s}$0
-endsnippet
-
 context "math()"
 snippet up "Ultraproduct" i
 \int_${1:S} ${2:M_s} d${3:\mu}$0
@@ -1169,7 +1148,7 @@ endsnippet
 
 context "math()"
 snippet `e "epsilon" iA
-\epsilona
+\epsilon
 endsnippet
 
 context "math()"
@@ -1344,6 +1323,16 @@ snippet '\sTn' "Tensor" riA
  \Tensor_{${1:i=0}}^{${2:N}} ${0:\sigma_i}
 endsnippet
 
+context "math()"
+snippet '\sop' "Direct Sum" riA
+ \oplus
+endsnippet
+
+context "math()"
+snippet '\sOp' "Direct Sum" riA
+ \bigoplus_{${1:i=0}}^{${2:N}} ${0:\sigma_i}
+endsnippet
+
 snippet wrt "with respect to" iA
 with respect to
 endsnippet
@@ -1427,5 +1416,12 @@ endsnippet
 snippet cml "CML" iA
 CML
 endsnippet
+
+snippet not "Notation" bA
+\begin{notation}
+	$1
+\end{notation}
+endsnippet
+
 
 # vim:ft=snippets

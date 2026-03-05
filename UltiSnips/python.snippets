@@ -7,40 +7,40 @@
 # from ${1:module} import ${2:methods}${3: as ${4:alias}}
 # endsnippet
 
-snippet rdef "Method Definition" bA
-def ${1:name_of_method}($2):
-	r"""
-	${3:Documention of method}
-
-	${4:Args:}
-		${2/(\w+)(,*)/$1 (data type): TODO\\n(?2:   )/g}
-	${5:Returns:
-		${6:return value}}
-	"""$0
-endsnippet
-
-snippet mk "inline math" iA
-:math:\`${1:math}\`$0
-endsnippet
-
-snippet dm "display math" bA
-.. math::
-
-${1:math}
-endsnippet
-
-snippet p-- "print(---)" bA
-print('------------------------------------------------------------')
-endsnippet
-
-snippet p## "print(###)" bA
-print('############################################################')
-endsnippet
-
-snippet prf "Print Format" bA
-print('$1'.format($2))
-endsnippet
-
+#snippet rdef "Method Definition" bA
+#def ${1:name_of_method}($2):
+#	r"""
+#	${3:Documention of method}
+#
+#	${4:Args:}
+#		${2/(\w+)(,*)/$1 (data type): TODO\\n(?2:   )/g}
+#	${5:Returns:
+#		${6:return value}}
+#	"""$0
+#endsnippet
+#
+#snippet mk "inline math" iA
+#:math:\`${1:math}\`$0
+#endsnippet
+#
+#snippet dm "display math" bA
+#.. math::
+#
+#${1:math}
+#endsnippet
+#
+#snippet p-- "print(---)" bA
+#print('------------------------------------------------------------')
+#endsnippet
+#
+#snippet p## "print(###)" bA
+#print('############################################################')
+#endsnippet
+#
+#snippet prf "Print Format" bA
+#print('$1'.format($2))
+#endsnippet
+#
 # snippet if "If" bA
 # if ${1:condition}:
 #     ${2:[value if True]}$0
@@ -64,16 +64,16 @@ endsnippet
 # plt.show()
 # endsnippet
 #
-snippet cell "cell" bA
-# %% ${1:cell name} ---------------------------------------------------------------------
-$0
-endsnippet
-
-snippet mcel "markdown cell" bA
-# %% [markdown] ${1:cell name} ---------------------------------------------------------------------
-$0
-endsnippet
-
+#snippet cell "cell" bA
+## %% ${1:cell name} ---------------------------------------------------------------------
+#$0
+#endsnippet
+#
+#snippet mcel "markdown cell" bA
+## %% [markdown] ${1:cell name} ---------------------------------------------------------------------
+#$0
+#endsnippet
+#
 # ## Pennylane snippets
 # snippet pHad "Hadamard" iA
 # qml.Hadamard(wires=${1:0})$0
