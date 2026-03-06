@@ -4,123 +4,70 @@
 
 local wk = require("which-key")
 
-wk.register({ -- Keep cursor center in screen when scrolling
-    ["<Down>"] = { "jzz", "Move down and center" },
-    ["<Up>"] = { "kzz", "Move up and center" },
-  },
-  {
-    mode = "n", "i",
-  })
+wk.add({
+  -- Cursor centering
+  { "<Down>",      "jzz",                                          desc = "Move down and center",          mode = "n" },
+  { "<Up>",        "kzz",                                          desc = "Move up and center",            mode = "n" },
 
+  -- Visual: move selected lines
+  { "<S-Down>",    ":m '>+1<CR>gv=gv",                            desc = "Shift selected lines down",     mode = "v" },
+  { "<S-Up>",      ":m '<-2<CR>gv=gv",                            desc = "Shift selected lines up",       mode = "v" },
+  { "<S-Left>",    "<gv",                                          desc = "Shift selected lines left",     mode = "v" },
+  { "<S-Right>",   ">gv",                                          desc = "Shift selected lines right",    mode = "v" },
 
-wk.register({ -- Moving visually selected lines around
-    ["<S-Down>"] = { ":m '>+1<CR>gv=gv", "Shift selected lines down" },
-    ["<S-Up>"] = { ":m '<-2<CR>gv=gv", "Shift selected lines up" },
-    ["<S-Left>"] = { "<gv", "Shift selected lines left" },
-    ["<S-Right>"] = { ">gv", "Shift selected lines right" },
-  },
-  {
-    mode = "v",
-  })
+  -- Normal: indent current line
+  { "<S-Left>",    "<<",                                           desc = "Shift current line left",       mode = "n" },
+  { "<S-Right>",   ">>",                                           desc = "Shift current line right",      mode = "n" },
 
-wk.register({ -- Moving lines around
-    ["<S-Left>"] = { "<<", "Shift current line left" },
-    ["<S-Right>"] = { ">>", "Shift current line right" },
-  },
-  {
-    mode = "n",
-  })
+  -- Search centering
+  { "n",           "nzzzv",                                        desc = "Jump to next search",           mode = "n" },
+  { "N",           "Nzzzv",                                        desc = "Jump to previous search",       mode = "n" },
 
-wk.register({ -- Jump to next/previous search and center
-    ["n"] = { "nzzzv", "Jump to next search" },
-    ["N"] = { "Nzzzv", "Jump to next search" },
-  },
-  {
-    mode = "n",
-  })
+  -- Page navigation centered
+  { "<C-u>",       "<C-u>zz",                                      desc = "Move up page and center",       mode = "n" },
+  { "<C-d>",       "<C-d>zz",                                      desc = "Move down page and center",     mode = "n" },
+  { "<S-Up>",      "<C-u>zz",                                      desc = "Move up page and center",       mode = "n" },
+  { "<S-Down>",    "<C-d>zz",                                      desc = "Move down page and center",     mode = "n" },
+  { "{",           "{zz",                                          desc = "Previous empty line",           mode = "n" },
+  { "}",           "}zz",                                          desc = "Next empty line",               mode = "n" },
 
-wk.register({
-    ["<C-u>"] = { "<C-u>zz", "Move up page and center" },
-    ["<C-d>"] = { "<C-d>zz", "Move down page and center" },
-    ["<S-Up>"] = { "<C-u>zz", "Move up page and center" },
-    ["<S-Down>"] = { "<C-d>zz", "Move down page and center" },
-    ["{"] = { "{zz", "Previous empty line" },
-    ["}"] = { "}zz", "Next empty line" },
-  },
-  {
-    mode = "n",
-  })
+  -- Line editing
+  { "<C-o>",       "o<Esc>k",                                      desc = "Create empty line below",       mode = "n" },
+  { "<C-i>",       "O<Esc>k",                                      desc = "Create empty line above",       mode = "n" },
+  { "J",           "mzJ`z",                                        desc = "Join line below",               mode = "n" },
 
-wk.register({
-    ["<C-o>"] = { "o<Esc>k", "Create empty line below" },
-    ["<C-i>"] = { "O<Esc>k", "Create empty line above" },
-    ["J"] = { "mzJ`z", "Join line below with current line" },
-  },
-  {
-    mode = "n",
-  })
+  -- Split management
+  { "<C-S-Left>",  "<cmd>silent vertical resize +3<CR>",          desc = "Resize split left",             mode = "n" },
+  { "<C-S-Right>", "<cmd>silent vertical resize -3<CR>",          desc = "Resize split right",            mode = "n" },
+  { "<C-S-Up>",    "<cmd>silent resize +3<CR>",                   desc = "Resize split up",               mode = "n" },
+  { "<C-S-Down>",  "<cmd>silent resize -3<CR>",                   desc = "Resize split down",             mode = "n" },
+  { "<leader>th",  "<C-w>t<C-w>H",                                desc = "Split to vertical",             mode = "n" },
+  { "<leader>tv",  "<C-w>t<C-w>K",                                desc = "Split to horizontal",           mode = "n" },
+  { "<C-Tab>",     "<C-w>w",                                       desc = "Cycle splits",                  mode = "n" },
+  { "<PageUp>",    "<cmd>bprevious<CR>",                           desc = "Move to previous buffer",       mode = "n" },
+  { "<PageDown>",  "<cmd>bnext<CR>",                               desc = "Move to next buffer",           mode = "n" },
 
-wk.register({
-    -- Make adjusting split sizes a bit more friendly
-    ["<C-S-Left>"] = { "<cmd>silent vertical resize +3<CR>", "Resize split left" },
-    ["<C-S-Right>"] = { "<cmd>silent vertical resize -3<CR>", "Resize split right" },
-    ["<C-S-Up>"] = { "<cmd>silent resize +3<CR>", "Resize split up" },
-    ["<C-S-Down>"] = { "<cmd>silent resize -3<CR>", "Resize split down" },
-    -- Change 2 split windows from vert to horiz or horiz to vert
-    ["<leader>th"] = { "<C-w>t<C-w>H", "Split to vertical" },
-    ["<leader>tv"] = { "<C-w>t<C-w>K", "Split to horizontal" },
-    -- Move between splits (uncomment if not using tmux plugin)
-    -- ["<C-Left>"] = { "<C-w>h", "Move to left split" },
-    -- ["<C-Down>"] = { "<C-w>j", "Move to bottom split" },
-    -- ["<C-Up>"] = { "<C-w>k", "Move to above split" },
-    -- ["<C-Right>"] = { "<C-w>l", "Move to right split" },
-    ["<C-Tab>"] = { "<C-w>w", "Cycle splits" },
-    -- Move between buffers
-    ["<PageUp>"] = { "<cmd>bprevious<CR>", "Move to previous buffer" },
-    ["<PageDown>"] = { "<cmd>bnext<CR>", "Move to next buffer" },
-  },
-  {
-    mode = "n",
-  })
+  -- Clipboard (normal)
+  { "<leader>y",   [["+y]],                                        desc = "Copy to clipboard",             mode = "n" },
+  { "<leader>Y",   [["+Y]],                                        desc = "Copy line to clipboard",        mode = "n" },
+  { "<leader>dd",  [["_d]],                                        desc = "Delete to trash",               mode = "n" },
+  { "<leader>p",   [["+p]],                                        desc = "Paste from clipboard",          mode = "n" },
+  { "<leader>P",   [["+P]],                                        desc = "Paste from clipboard above",    mode = "n" },
 
-wk.register({
-    ["<leader>y"] = { [["+y]], "Copy text to clipboard" },
-    ["<leader>Y"] = { [["+Y]], "Copy line to clipboard" },
-    ["<leader>dd"] = { [["_d]], "Delete text to trash" },
-    ["<leader>p"] = { [["+p]], "Paste from clipboard" },
-    ["<leader>P"] = { [["+P]], "Paste from clipboard above" },
-  },
-  {
-    mode = "n",
-  })
+  -- Clipboard (visual)
+  { "<leader>y",   [["+y]],                                        desc = "Copy to clipboard",             mode = "v" },
+  { "<leader>dd",  [["_d]],                                        desc = "Delete to trash",               mode = "v" },
+  { "<leader>p",   [["+p]],                                        desc = "Paste from clipboard",          mode = "v" },
+  { "<leader>P",   [["+P]],                                        desc = "Paste from clipboard above",    mode = "v" },
 
-wk.register({
-    ["<leader>y"] = { [["+y]], "Copy visual text to clipboard" },
-    ["<leader>dd"] = { [["_d]], "Delete visual text to trash" },
-    ["<leader>p"] = { [["+p]], "Paste visual from clipboard" },
-    ["<leader>P"] = { [["+P]], "Paste visual from clipboard above" },
-  },
-  {
-    mode = "v",
-  })
+  -- Location list
+  { "<leader>k",   "<cmd>lnext<CR>zz",                            desc = "Next location item",            mode = "n" },
+  { "<leader>j",   "<cmd>lprev<CR>zz",                            desc = "Previous location item",        mode = "n" },
 
-wk.register({
-    ["<leader>k"] = { "<cmd>lnext<CR>zz", "Next item" },
-    ["<leader>j"] = { "<cmd>lprev<CR>zz", "Previous item" },
-  },
-  {
-    mode = "n",
-  })
-
-wk.register({
-    ["Q"] = { "<nop>", "Do nothing" },
-    ["<C-f>"] = { "<cmd>silent !tmux new tmux-sessionizer<CR>", "New tmux session" },
-    -- ["<leader>s"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Refactor word under cursor" },
-    -- ["<leader>x"] = { "<cmd>!chmod +x %<CR>", { silent = true }, "Change file to executable" },
-    ["<leader>mr"] = { "<cmd>CellularAutomaton make_it_rain<CR>", "Make it rain!" },
-    ["<leader>ml"] = { "<cmd>CellularAutomaton game_of_life<CR>", "Game of Life" },
-    ["<leader>ms"] = { "<cmd>CellularAutomaton scramble<CR>", "Scramble" },
-  },
-  {
-    mode = "n",
-  })
+  -- Misc
+  { "Q",           "<nop>",                                        desc = "Disable Ex mode",               mode = "n" },
+  { "<C-f>",       "<cmd>silent !tmux new tmux-sessionizer<CR>",  desc = "New tmux session",              mode = "n" },
+  { "<leader>mr",  "<cmd>CellularAutomaton make_it_rain<CR>",     desc = "Make it rain!",                 mode = "n" },
+  { "<leader>ml",  "<cmd>CellularAutomaton game_of_life<CR>",     desc = "Game of Life",                  mode = "n" },
+  { "<leader>ms",  "<cmd>CellularAutomaton scramble<CR>",         desc = "Scramble",                      mode = "n" },
+})
