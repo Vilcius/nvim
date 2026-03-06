@@ -9,7 +9,7 @@ return {
     vim.g.jukit_enable_textcell_bg_hl = 1
     vim.g.jukit_enable_textcell_bg_syntax = 1
     vim.g.jukit_output_new_os_window = 1
-    vim.g.jukit_text_syntax_file = "$VIMRUNTIME . '/syntax/' . 'markdown.vim'"
+    vim.g.jukit_text_syntax_file = vim.fn.expand("$VIMRUNTIME") .. "/syntax/markdown.vim"
     vim.g.jukit_in_style = 4
   end,
   config = function()
