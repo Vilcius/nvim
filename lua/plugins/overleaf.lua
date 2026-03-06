@@ -2,7 +2,7 @@ return {
   "richwomanbtc/overleaf.nvim",
   config = function()
     require("overleaf").setup({
-      cookie = "", -- set your overleaf_session2 cookie here (do not commit)
+      cookie = os.getenv("OVERLEAF_COOKIE") or "",
       log_level = "debug",
       node_path = "node",
     })
